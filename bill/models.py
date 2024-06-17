@@ -14,11 +14,15 @@ class User(models.Model):
     email = models.EmailField(max_length=70, unique=True)
 '''
 class BillTask(models.Model):
+
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=16, choices=STATUS_CHOICE, default="not_completed")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    #def __str__(self) -> str:
+        #return f"{self.title}, {self.description}, {self.date}, {self.status} by {self.user.username}"
 
 class BillTag(models.Model):
     name = models.CharField(max_length=30)
