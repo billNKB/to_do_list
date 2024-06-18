@@ -21,10 +21,13 @@ class BillTask(models.Model):
     status = models.CharField(max_length=16, choices=STATUS_CHOICE, default="not_completed")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    #def __str__(self) -> str:
-        #return f"{self.title}, {self.description}, {self.date}, {self.status} by {self.user.username}"
+    def __str__(self) -> str:
+        return f"{self.title}, {self.description}, {self.date}, {self.status} by {self.user.username}"
 
 class BillTag(models.Model):
     name = models.CharField(max_length=30)
     task = models.ManyToManyField(BillTask)
+
+    def __str__(self) -> str:
+        return f"{self.name}"
 
